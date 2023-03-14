@@ -71,7 +71,7 @@ class newCard {
         $(this.element).html(this.cont);
         $(this.element).css({
             'color': this.color,
-            'background-image': `linear-gradient(#291624 50%, ${this.color}5d)`
+            'background-image': `linear-gradient(#222222 50%, ${this.color}5d)`
         });
         $(`${this.element} #star svg`).css({
             'fill': this.color
@@ -104,7 +104,7 @@ class newCard {
         $(this.element).html(this.cont);
         $(this.element).css({
             'color': this.color,
-            'background-image': `linear-gradient(#291624 50%, ${this.color}5d)`
+            'background-image': `linear-gradient(#222222 50%, ${this.color}5d)`
         });
         $(`${this.element} #star svg`).css({
             'fill': this.color

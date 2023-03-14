@@ -1,9 +1,9 @@
 
-@dark:#291624;
-@main:#311e2c;
-@dropShadow: drop-shadow( 0px 0.25rem 0.25rem #000000b7);
+@cardsColor:#222222;
+@main:#1b1b1b;
+@dropShadow: drop-shadow( 0px 0.25rem 0.25rem #00000069);
 @textLight: #ffffff;
-@secondary: #dfa334;
+@secondary: #7c7aff;
 
 body {
     background-color: @main;
@@ -37,48 +37,64 @@ body {
     font-family: 'Questrial', sans-serif;
     color: @textLight;
 
-    background-color: @dark;
+    background-color: @cardsColor;
     height: fit-content;
-    padding: 1rem;
+
+    padding: 6px 12px;
+    border-radius: 12px;
 
     form {
         display: flex;
         flex-direction: column;
         width: 100%;
     }
-    input[type=number], select {
+    input[type=number] {
         width: 50%;
-        padding: 1rem 1.5rem;
-        margin: 0.5rem 0;
+        padding: 16px 20px;
+        margin: 6px 0px;
         display: block;
 
-        border: none;
+        border: 1px solid @main;
         outline:none;
 
-        border-radius: 0.25rem;
+        border-radius: 6px;
+
         box-sizing: border-box;
         background-color: @main;
         color: @textLight;
+        transition: 0.1s;
+
+        //bruhhhhh definatly from google lmao
+        -moz-appearance: textfield;/*For FireFox*/
+        &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        &:focus {
+            border: 1px solid @secondary;
+        }
     }
+
     input[type=submit] {
         width: 100%;
         background-color: transparent;
         color: @secondary;
-        padding: 1rem 1.5rem;
-        margin: 0.5rem 0;
+        padding: 16px 20px;
+        margin: 6px 0px;
         border: solid 1px @secondary;
-        border-radius: 0.25rem;
+        border-radius: 6px;
         cursor: pointer;
         font-family: 'Questrial', sans-serif;
         transition: 0.1s;
+        &:hover {
+            color: @textLight;
+            background-color: @secondary;
+        }
     }
-    input[type=submit]:hover {
-        color: @textLight;
-        background-color: @secondary;
-    }
+
     label {
-        padding: 1rem 1.5rem;
-        margin: 0.5rem 0;
+        padding: 16px 20px;
+        margin: 6px 0px;
 
         font-size: 1.25em;
         color: @textLight;
@@ -147,12 +163,12 @@ body {
     }
 
     .front {
-        background: @dark;
+        background: @cardsColor;
         font-size: 8em;
         justify-content: center;
         align-items: center;
         color: transparent;
-        text-shadow: 0px 0.25rem 0.25rem @dark, 0 0 0 #000000b7, 0px 0.25rem 0.25rem @dark;
+        text-shadow: 0px 0.25rem 0.25rem @cardsColor, 0 0 0 #000000b7, 0px 0.25rem 0.25rem @cardsColor;
     }
 
     .back {
@@ -160,7 +176,7 @@ body {
         position: absolute;
         top: 0;
         left: 0;
-        background-color: @dark;
+        background-color: @cardsColor;
 
         transform: rotateY(180deg);
         font-family: 'Questrial', sans-serif;
@@ -203,8 +219,8 @@ body {
         fill: @textLight;
         width: 1.5rem;
     }
-    background-color: @dark;
-    border-radius: 0.25rem;
+    background-color: @cardsColor;
+    border-radius: 12px;
 
     filter: brightness(1) @dropShadow;
     cursor: pointer;
@@ -220,9 +236,9 @@ body {
     height: 3rem;
     background-color: @secondary;
     color: white;
-    padding: 1rem 1rem;
+    padding: 12px 6px;
     border: none;
-    border-radius: 0.25rem;
+    border-radius: 12px;
     cursor: pointer;
     font-family: 'Questrial', sans-serif;
 
