@@ -30,36 +30,58 @@ $(document).ready(function() {
     document.getElementById('Legendary').value = Legendary;
     document.getElementById('Mythic').value = Mythic;
 
-    let CardA = new newCard('#a');
-    let CardB = new newCard('#b');
+    function roll() {
+        cardReader(document.getElementById('cardsNumber').value)
+        var cardIds = cardIdReturn()
 
-    CardA.generate();
-    CardB.generate();
+        cardIds.forEach(e => {new newCard(e)})
 
-    $(".card").click( function() {
-        $(this).toggleClass('flip');
-    });
 
-    function reroll() {
-        $("#a").removeClass('Mythic');
-        $("#b").removeClass('Mythic');
-
-        $(".left a").addClass('disabled');
+        $(".left a").addClass('disabled');  
         $(".card").addClass('disabled');
-        setTimeout(function(){
-            CardA.regenerate();
-            CardB.regenerate();
 
+        $(".card").hover( function() {
+            if(!this.classList.contains("disabled")){
+                $(this).addClass('flip');
+            }
+        });
+
+
+        setTimeout(function(){
             $(".left a").removeClass('disabled');
             $(".card").removeClass('disabled');
         }, 1000);
-        $(".card").removeClass('flip');
-    }
 
-    $(".cardReset").click( function() { reroll() });
+    }
 
     $("#setBut").click( function() {
         $("#settings").toggleClass('menu');
         $("#settings").toggleClass('menuNone');
     });
+
+    $(document).on('keypress', function(event) {
+        if (event.keyCode == 32) {
+            var test = document.querySelectorAll(".flip");
+            if(test.length > 0){
+                $(".card").removeClass('flip');
+                setTimeout(function(){
+                    roll()
+                }, 1000);
+            } else {
+                roll()
+            }
+        }
+        $("#res").click( function() {
+            var test = document.querySelectorAll(".flip");
+            if(test.length > 0){
+                $(".card").removeClass('flip');
+                setTimeout(function(){
+                    roll()
+                }, 1000);
+            } else {
+                roll()
+            }
+        });
+    })
+
 });

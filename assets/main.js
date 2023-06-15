@@ -11,7 +11,38 @@ function urlUpdate() {
     window.location = '?' + btoa(Data);
 }
 
+ function cardReader(cardNumber){
+    document.getElementById('cardTable').innerHTML = '';
+    var wh = 'style="--ww: 144px; --hh: 208px;"'
+    if (cardNumber < 15){
+        var wh = 'style="--ww: 288px; --hh: 416px;"'
+    }
+    while (cardNumber > 0) {
 
+        document.getElementById('cardTable').innerHTML +=`
+        <div class="card-container" ${wh}>
+            <div class="card" id="${cardNumber}card">
+                <div class="back"></div>
+                <div class="front">#</div>
+            </div>
+        </div>
+        `;
+
+
+        cardNumber -= 1;
+    }
+}
+
+function cardIdReturn(){
+    var cardNumber = document.getElementById('cardsNumber').value
+    var cards = []
+    while (cardNumber > 0) {
+        cards.push(`#${cardNumber}card .back`)
+        cardNumber -= 1;
+    }
+    console.log(cards)
+    return cards
+}
 function cardData(){
     var Common = document.getElementById('Common').value;
     var Uncommon = document.getElementById('Uncommon').value;
@@ -50,10 +81,9 @@ class newCard {
         this.rarity = this.detailReturn[2];
 
         this.cont = '';
-        this.saveChance = 1000;
+        this.saveChance = 750;
         this.star = Math.floor(Math.random() * this.saveChance) + 1
-    }
-    generate() {
+
         if (this.rarity == 'Mythic'){
             $(this.element).addClass('Mythic')
         };
@@ -66,39 +96,6 @@ class newCard {
             `;
         }
 
-        this.cont = this.cont + this.cardNumber;
-
-        $(this.element).html(this.cont);
-        $(this.element).css({
-            'color': this.color,
-            'background-image': `linear-gradient(#222222 50%, ${this.color}5d)`
-        });
-        $(`${this.element} #star svg`).css({
-            'fill': this.color
-        });
-    }
-    regenerate(){
-        //? generate Data
-        this.detailReturn = cardData();
-        this.cardNumber = this.detailReturn[0];
-        this.color = this.detailReturn[1];
-        this.rarity = this.detailReturn[2];
-        this.cont = '';
-
-        this.star = Math.floor(Math.random() * this.saveChance) + 1
-
-        //? generate Card
-        if (this.rarity == 'Mythic'){
-            $(this.element).addClass('Mythic')
-        };
-
-        if (this.star == 1){
-            this.cont = `
-            <div id="star">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg>
-            </div>
-            `;
-        }
         this.cont = this.cont + this.cardNumber;
 
         $(this.element).html(this.cont);
